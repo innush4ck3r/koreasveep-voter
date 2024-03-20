@@ -107,9 +107,6 @@
             }
         }
 
-
-
-
         gsap.registerPlugin(Observer);
 
         let root = document.documentElement;
@@ -258,8 +255,12 @@
 
         let context = canvas.getContext("2d");
 
+        let rect = image2.getBoundingClientRect();
+
         // Draw both images on the canvas with their respective z-index
-        context.drawImage(image2, 0, 0, canvas.width, canvas.height);
+        // context.drawImage(image2, 0, 0, image2.width, image2.height);
+        context.drawImage(image2, rect.left - image1.getBoundingClientRect().left, rect.top - image1.getBoundingClientRect().top, rect.width, rect.height);
+
         context.drawImage(image1, 0, 0, canvas.width, canvas.height);
 
         // Convert the canvas to a data URL
