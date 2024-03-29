@@ -67,7 +67,7 @@
 
             <div class="d-flex justify-content-center image-container ">
                 <div class="frame">
-                    <img class="image1" id="wrapper" src="static/images/voterCollection.png">
+                    <img class="image1" id="wrapper" src="static/images/voterCollection1.png">
                 </div>
                 <img class="image2 resize-drag" id="preview" src="static/images/avatar-image.png">
             </div>
@@ -230,49 +230,61 @@
 
 
         // -----------------------------------------------------------
-        
+
 
 
     </script>
 
 
-<script>
+    <script>
 
-    let image1 = document.getElementById("wrapper");
-    let image2 = document.getElementById("preview");
-    let mergeAndDownloadButton = document.getElementById("mergeAndDownload");
+        let image1 = document.getElementById("wrapper");
+        let image2 = document.getElementById("preview");
+        let mergeAndDownloadButton = document.getElementById("mergeAndDownload");
 
-    mergeAndDownloadButton.addEventListener("click", function () {
-        mergeAndDownload();
-    });
+        mergeAndDownloadButton.addEventListener("click", function () {
+            mergeAndDownload();
+        });
 
 
-    function mergeAndDownload() {
-        // Create a new canvas with the same dimensions as the images
-        let canvas = document.createElement("canvas");
-        canvas.width = 500;
-        canvas.height = 500;
+        function mergeAndDownload() {
+            // Define the desired width and height for the merged image
+            let mergedWidth = 1920; // Adjust as needed for higher resolution
+            let mergedHeight = 1920; // Adjust as needed for higher resolution
 
-        let context = canvas.getContext("2d");
+            // Create a new canvas with the desired dimensions
+            let canvas = document.createElement("canvas");
+            canvas.width = mergedWidth;
+            canvas.height = mergedHeight;
 
-        let rect = image2.getBoundingClientRect();
+            let context = canvas.getContext("2d");
 
-        // Draw both images on the canvas with their respective z-index
-        // context.drawImage(image2, 0, 0, image2.width, image2.height);
-        context.drawImage(image2, rect.left - image1.getBoundingClientRect().left, rect.top - image1.getBoundingClientRect().top, 500, 500);
+            // Draw both images on the canvas with their respective positions and sizes
+            let image1Rect = image1.getBoundingClientRect();
+            let image2Rect = image2.getBoundingClientRect();
 
-        context.drawImage(image1, 0, 0, canvas.width, canvas.height);
+            // Calculate the scale factors for resizing images if necessary
+            let scale1 = mergedWidth / image1Rect.width;
+            let scale2 = mergedWidth / image2Rect.width;
 
-        // Convert the canvas to a data URL
-        let mergedImage = canvas.toDataURL("image/png");
+            // Draw image2 onto the canvas
+            context.drawImage(image2, (image2Rect.left - image1Rect.left) * scale1, (image2Rect.top - image1Rect.top) * scale1, image2Rect.width * scale1, image2Rect.height * scale1);
 
-        // Create a temporary download link and trigger the download
-        let downloadLink = document.createElement("a");
-        downloadLink.href = mergedImage;
-        downloadLink.download = "image.png";
-        downloadLink.click();
-    }
-</script>
+            // Draw image1 onto the canvas
+            context.drawImage(image1, 0, 0, mergedWidth, mergedHeight);
+
+            // Convert the canvas to a data URL
+            let mergedImage = canvas.toDataURL("image/png", 1.0); // Set quality to 1.0 for maximum quality
+
+            // Create a temporary download link and trigger the download
+            let downloadLink = document.createElement("a");
+            downloadLink.href = mergedImage;
+            downloadLink.download = "image.png";
+            downloadLink.click();
+        }
+
+
+    </script>
 
 </body>
 
