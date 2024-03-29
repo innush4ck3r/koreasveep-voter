@@ -67,7 +67,7 @@
 
             <div class="d-flex justify-content-center image-container ">
                 <div class="frame">
-                    <img class="image1" id="wrapper" src="static/images/Koreaimage-4.png">
+                    <img class="image1" id="wrapper" src="static/images/voterCollection.png">
                 </div>
                 <img class="image2 resize-drag" id="preview" src="static/images/avatar-image.png">
             </div>
@@ -250,8 +250,8 @@
     function mergeAndDownload() {
         // Create a new canvas with the same dimensions as the images
         let canvas = document.createElement("canvas");
-        canvas.width = image1.width;
-        canvas.height = image1.height;
+        canvas.width = 500;
+        canvas.height = 500;
 
         let context = canvas.getContext("2d");
 
@@ -259,7 +259,7 @@
 
         // Draw both images on the canvas with their respective z-index
         // context.drawImage(image2, 0, 0, image2.width, image2.height);
-        context.drawImage(image2, rect.left - image1.getBoundingClientRect().left, rect.top - image1.getBoundingClientRect().top, rect.width, rect.height);
+        context.drawImage(image2, rect.left - image1.getBoundingClientRect().left, rect.top - image1.getBoundingClientRect().top, 500, 500);
 
         context.drawImage(image1, 0, 0, canvas.width, canvas.height);
 
