@@ -16,6 +16,8 @@
     <script src="https://assets.codepen.io/16327/gsap-latest-beta.min.js?v=1234"></script>
     <script src="https://assets.codepen.io/16327/Observer.min.js?v=1234"></script>
 
+
+
     <style>
         .image-container {
             position: relative;
@@ -52,6 +54,7 @@
             overflow: hidden;
         }
 
+
         video {
             width: 340px;
             height: 340px;
@@ -70,7 +73,6 @@
             transform: scaleX(-1);
             /* mirror effect while using front cam */
         }
-
     </style>
 
 </head>
@@ -107,19 +109,17 @@
 
                     <!-- Modal Header -->
                     <div class="modal-header">
-                        <h4 class="modal-title">Take your Photo</h4>
+                        <h4 class="modal-title">Capture Live Photo</h4>
                         <button type="button" class="close" data-dismiss="modal">&times;</button>
                     </div>
 
                     <!-- Modal body -->
                     <div class="modal-body">
                         <div class="container" align="center">
-                            <div class="section d-flex justify-content-center embed-responsive embed-responsive-21by9">
-                                <video id="camera-stream" class="border border-2 border-danger embed-responsive-item" autoplay playsinline>
-                                    
-                                </video>
+                            <div class="">
+                                <video id="camera-stream" class="border border-2 border-danger"></video>
                             </div>
-                            <div class="mt-3 section d-flex justify-content-center embed-responsive embed-responsive-21by9">
+                            <div class="mt-3">
                                 <br>
                                 <canvas id="canvas" class="bg-light shadow border border-2 border-success">
                                 </canvas>
@@ -147,6 +147,8 @@
     </div>
 
     <script>
+
+
 
         let fileTag = document.getElementById("uploadImage");
         let preview = document.getElementById("preview");
@@ -318,6 +320,10 @@
             root.style.cursor = isPressed ? cursor : "unset";
         }
 
+    </script>
+
+
+    <script>
 
         let image1 = document.getElementById("wrapper");
         let image2 = document.getElementById("preview");
@@ -436,6 +442,8 @@
 
 
     </script>
+
+
 
 </body>
 
